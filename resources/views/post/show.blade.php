@@ -7,16 +7,12 @@
     <br>
 
     <ul id="menu">
-        <li><a href="{{ route('/') }}">Knowledge Base ></a></li>
-        <li><a href="{{ route('unit.posts', $post->id_unit) }}">{{  $post->id_unit }} ></a></li>
+        <li><a href="{{ route('/') }}">Knowledge Base</a></li>
+        <li>></li>
+        <li><a href="{{ route('unit.posts', $post->id_unit) }}">{{  $post->id_unit }}</a></li>
+        <li>></li>
         <li><a href="{{ route('show', ['id_unit'=>$post->id_unit, 'slug'=>$post->slug]) }}">{{ $post->judul_post }}</a></li>
     </ul>  
-
-    <a href="{{ route('/') }}"><p class="text-primary fw-light" style="font-size:20px;">Knowledge Base > <a href="{{ route('unit.posts', $post->id_unit) }}"><p class="text-primary fw-light" style="font-size:20px;">{{ $post->id_unit}} > <a href="{{ route('show', ['id_unit'=>$post->id_unit, 'slug'=>$post->slug] )}}"><p class="text-primary fw-light" style="font-size:20px;">{{ $post->judul_post }}</p></a></p></a></p></a>
-    
-
-    <a href="{{ URL::previous() }}"><p class="text-primary fw-light" style="font-size:20px;">{{ $post->judul_post }}</p></a>
-
     
     <hr>
 
