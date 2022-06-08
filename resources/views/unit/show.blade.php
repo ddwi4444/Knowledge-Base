@@ -36,16 +36,16 @@
             <!-- Menyaring untuk menampilkan post berdasarkan id yang sama dengan parameter id unitnya -->
             @if($post->id_unit == $user->id_unit)
             <div class="col-md-3">
-                <div data-aos="fade-up" class="card mb-8" style="width: 18rem;">
-                <a class="text-dark text-underline-hover" href="{{ route('show', ['id_unit'=>$post->id_unit, 'slug'=>$post->slug] )}}">
-                <img class="card-img-top" src="{{ asset('storage/'.$post->image) }}" alt="Card image cap">
-                <div class="card-body">
-                    <p>{{ ($post->judul_post) }}</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{ $post->created_at }}</li>
-                </ul>
-                </a>
+                <div data-aos="fade-up" class="card_unit">
+                    <a class="text-dark text-underline-hover" href="{{ route('show', ['id_unit'=>$post->id_unit, 'slug'=>$post->slug] )}}">
+                        <img class="img_unit" src="{{ asset('storage/'.$post->image) }}" alt="Card image cap">
+                        <div class="card_text d-flex justify-content-center">
+                            <p>{{ ($post->judul_post) }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{ $post->created_at->format('d, M Y'); }}</li>
+                        </ul>
+                    </a>
                 </div>
             </div>
             @endif

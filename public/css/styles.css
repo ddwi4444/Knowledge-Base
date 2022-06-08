@@ -185,6 +185,32 @@ body{
   object-fit: cover;
 }
 
+/* Card Unit Show */
+.card_unit {
+  width: 250px;
+  height: 250px;
+  border-style: solid;
+  border-width: medium;
+  border-color: rgb(78, 151, 210);
+}
+
+.img_unit {
+  width: 245.5px;
+  height: 100px;
+  display: block;
+  object-fit: cover;
+}
+
+.card_text {
+  width: 250px;
+  height: 100px;
+  padding-top: 10px;
+  padding-left: 6px;
+  padding-right: 10px;
+  text-align: center;
+  display: inline-block;
+}
+
 /* Navigasi Link Button */
 ul#menu {
   padding: 0;
