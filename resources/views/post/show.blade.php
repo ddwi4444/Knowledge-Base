@@ -156,11 +156,20 @@
                                 @enderror
                             </div>
 
+                            <div class="col-md-6 mt-2">
+                                {!! NoCaptcha::display() !!}
+                                {!! NoCaptcha::renderJs() !!}
+                                @error('g-recaptcha-response')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
                             <div class="float-start mt-2">
                                 <button type="submit" class="btn btn-primary btn-sm">Ajukan Pertanyaan</button>
                                 <a href="{{ route('show', ['id_unit'=>$post->id_unit, 'slug'=>$post->slug]) }}" class="btn btn-outline-primary btn-sm">Batal</a>
                             </div>
-
                             
 
                         </form>                       
