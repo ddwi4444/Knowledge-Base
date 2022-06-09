@@ -41,15 +41,27 @@ class PostCommentController extends Controller
     // Untuk insert jawaban pesan dari admin
     public function storeAnswer(Request $req, Comment $comment)
     {
+        
         Comment::create([
             'id_post' => $comment->id_post,
             'id_unit' => auth()->user()->id_unit,
             'nama' => auth()->user()->nama_unit,
             'username' => auth()->user()->username,
-            'comment' => $req->komentar,
+            'comment' => $req->balasan,
             'id_parent' => $comment->id,
-            'status' => '1',
+            'status' => '1',            
         ]);
+
+        if($req->status == 1)
+        {
+            $this->changeStatus($comment->id);
+        }
+        elseif($req->status == 2)
+        {
+            $this->changeStatusNonaktif($comment->id);
+        }
+
+        
 
         if ($comment) {
             return redirect()
@@ -98,12 +110,32 @@ class PostCommentController extends Controller
         }
     }
 
+    public function destroyAnswer($id)
+    {
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+    
+        if ($comment) {
+            return redirect()
+                ->back()
+                ->with([
+                    toast('Pesan berhasil dihapus','success')
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->with([
+                    toast('Pesan gagal dihapus','error')
+                ]);
+        }
+    }
+
     // Untuk mengubah agar pesan tidak tertampil di halaman post
     public function changeStatusNonaktif($id)
     {
         $comment = Comment::findOrFail($id);
         $comment->update([
-            $comment->status = '0',
+            $comment->status = '2',
         ]);
 
         if ($comment) {

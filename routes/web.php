@@ -34,9 +34,11 @@ Route::get('/dashboard', [PostController::class, 'index'])->middleware('auth')->
 Route::get('/pertanyaan', [PostCommentController::class, 'pertanyaan'])->middleware('auth')->name('pertanyaan');
 Route::post('/pertanyaan.store/{post}', [PostCommentController::class, 'store'])->name('pertanyaan.store');
 Route::post('/answer.store{comment}', [PostCommentController::class, 'storeAnswer'])->name('answer.store');
+Route::Delete('/answer.destroy/{comment::id}', [PostCommentController::class, 'destroyAnswer'])->name('answer.destroy');
 Route::get('/changeStatus/{comment}', [PostCommentController::class, 'changeStatus'])->middleware('auth')->name('changeStatus');
 Route::get('/changeStatusNonaktif/{comment}', [PostCommentController::class, 'changeStatusNonaktif'])->middleware('auth')->name('changeStatusNonaktif');
 Route::resource('/comment', PostCommentController::class);
+
 
 Route::get('/dashboard/cari',[PostController::class, 'cari'])->middleware('auth');
 Route::get('/search',[PostController::class, 'search']);
