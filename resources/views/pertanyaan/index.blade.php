@@ -28,15 +28,18 @@
       <td>{{ $loop->iteration }}</td>
       <td>{{ $comment->username }}</td>
       <td>{{ $comment->nama }}</td>
-      <td>{{ $comment->comment }}</td>
+      <td class="col-sm-3">{{ $comment->comment }}</td>
       <td>{{ $comment->created_at->format('d, M Y'); }}</td>
       <td>
           @if($comment->status == 0)
+          <!-- Tanda pertanyaan masi baru -->
+            <p class="text-info">Pesan Baru</p>            
+          @elseif($comment->status == 2)
           <!-- Button untuk menampilkan pesan -->
             <a href="{{ route('changeStatus', $comment->id) }}"
-            class="btn btn-sm btn-warning shadow"><i class="bi bi-x-square"></i> Tidak Tampil</i></a>
+              class="btn btn-sm btn-warning shadow"><i class="bi bi-x-square"></i> Tidak Tampil</i></a>
           @else
-          <!-- Button untuk tidak menam[ilkan pesan -->
+          <!-- Button untuk tidak menampilkan pesan -->
             <a href="{{ route('changeStatusNonaktif', $comment->id) }}"
             class="btn btn-sm btn-primary shadow"><i class="bi bi-check-square"></i> Tampil</i></a>  
           @endif

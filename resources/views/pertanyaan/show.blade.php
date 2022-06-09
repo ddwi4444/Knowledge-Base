@@ -49,10 +49,21 @@
                                 <div class="border" style="border-radius: 20px; background-color: #f2f4f5; width: fit-content;">   
                                     <div style="padding-left: 10px; padding-right: 10px;">
                                         <p>
-                                            {!! $com->comment !!}
+                                            {!! $com->comment !!} 
                                         </p>
                                     </div>                                     
                                 </div>
+
+                                <!-- Menghapus balasan admin -->
+                                <form action="{{ route('answer.destroy', $com->id) }}" method="Post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <!-- Button untuk mengahpus pesan dari mahasiswa -->
+                                    <button type="submit" class="btn btn-danger btn-floating mt-2" data-toggle="tooltip" title='Hapus'>
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                </form>
+
                     </div>
                     @endif
                     @endforeach
@@ -67,27 +78,37 @@
                             @method('post')  
                             
                             <div class="form-group mt-2">
-                                <label for="komentar">Balas Pertanyaan</label>
+                                <label for="balasan">Balas Pertanyaan</label>
                                 <textarea
-                                    name="komentar" id="editor"
-                                    class="form-control @error('komentar') is-invalid @enderror"
+                                    name="balasan" id="editor"
+                                    class="form-control"
                                     rows="5" 
-                                    required>{{ old('komentar') }}</textarea>
+                                    oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Balasan wajib diisi !')"
+                                    required>{{ old('balasan') }}</textarea>
 
                                 <!-- error message untuk deskripsi -->
-                                @error('komentar')
+                                @error('balasan')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
 
+                            <div class="col-md-6 mt-2">
+                                    <select name="status" required>
+                                        <option value="" disabled selected >Pilih Tampilkan atau Tidak</option>
+                                        <option value="1">Tampilkan</option>
+                                        <option value="2">Tidak Tampilkan</option>
+                                    </select>
+                            </div>
+
+
                             <div class="float-start mt-2">
                                 <button type="submit" class="btn btn-primary btn-sm">Kirim Balasan</button>
                                 <a href="{{ route('pertanyaan') }}" class="btn btn-outline-primary btn-sm">Kembali</a>
                             </div>
                             
-                        </form>      
+                        </form>
                 </div>
             </div>
             </div>
