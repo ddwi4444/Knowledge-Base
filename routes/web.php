@@ -39,12 +39,11 @@ Route::get('/changeStatus/{comment}', [PostCommentController::class, 'changeStat
 Route::get('/changeStatusNonaktif/{comment}', [PostCommentController::class, 'changeStatusNonaktif'])->middleware('auth')->name('changeStatusNonaktif');
 Route::resource('/comment', PostCommentController::class);
 
-
+Route::resource('/posts', PostController::class)->middleware('auth');
 Route::get('/dashboard/cari',[PostController::class, 'cari'])->middleware('auth');
 Route::get('/search',[PostController::class, 'search']);
 Route::get('searchUnit/{user:id_unit}',[PostController::class, 'searchUnit'])->name('unit.search');
 
-Route::resource('/posts', PostController::class)->middleware('auth');
 Route::get('{id_unit}/{slug}',[PostController::class, 'singlePost'])->name('show');
 Route::get('/autocomplete', [PostController::class, 'autocomplete'])->name('autocomplete');
 

@@ -30,9 +30,10 @@
 
                             <div class="form-group mt-2 mb-2">
                                 <div class="image">
-                                <label for="image">Photo</label>
+                                <label for="image">Thumbnail</label>
+                                <img style ="height: 200px;  width: 200px;" class="img_unit" src="{{ asset('storage/'.$post->image) }}" alt="Card image cap">
                                     <input type="file" class="form-control" 
-                                    value="{{ $post->image }}" name="image" id="image" accept="image/jpg, image/png, image/jpeg">
+                                    value="{{ $post->image_path }}" name="image" id="image" accept="image/jpg, image/png, image/jpeg">
                                 </div>
                             </div>
 

@@ -30,7 +30,7 @@
 
                             <div class="form-group mt-2 mb-2">
                                 <div class="image">
-                                <label for="image">Photo</label>
+                                <label for="image">Thumbnail</label>
                                     <input type="file" class="form-control  @error('thumbnail') is-invalid @enderror" name="image" id="image" accept="image/jpg, image/png, image/jpeg" required>
                                 </div>
 
