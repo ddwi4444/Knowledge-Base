@@ -28,13 +28,11 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group mt-2 mb-2">
-                                <div class="image">
-                                <label for="image">Thumbnail</label>
-                                <img style ="height: 200px;  width: 200px;" class="img_unit" src="{{ asset('storage/'.$post->image) }}" alt="Card image cap">
-                                    <input type="file" class="form-control" 
+                            <label for="image mt-5">Thumbnail</label>
+                            <div class="form-group mb-2">
+                                <img style ="height: 200px;  width: 200px;" class="img_unit" src="{{ asset('public/storage/'.$post->image) }}" alt="Card image cap">
+                                <input class="form-group mt-1" type="file" class="form-control" 
                                     value="{{ $post->image_path }}" name="image" id="image" accept="image/jpg, image/png, image/jpeg">
-                                </div>
                             </div>
 
                             <div class="form-group mt-2">
