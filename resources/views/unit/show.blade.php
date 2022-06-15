@@ -29,16 +29,16 @@
     </div>
 
 @section('container')    
-    <div class="container" style="margin-top: 100px; margin bottom: 100px;">
+    <div class="container" style="margin-bottom: 50px;">
         <div class="row justify-content-center ms-1">
             <!-- Memanggil data post -->
             @foreach($posts as $post)
             <!-- Menyaring untuk menampilkan post berdasarkan id yang sama dengan parameter id unitnya -->
             @if($post->id_unit == $user->id_unit)
             <div class="col-md-3">
-                <div data-aos="fade-up" class="card_unit">
+                <div data-aos="fade-up" class="card_unit mt-5">
                     <a class="text-dark text-underline-hover" href="{{ route('show', ['id_unit'=>$post->id_unit, 'slug'=>$post->slug] )}}">
-                        <img class="img_unit" src="{{ asset('storage/'.$post->image) }}" alt="Card image cap">
+                        <img class="img_unit" src="{{ asset('storage/'.$post->image) }}" alt=" ">
                         <div class="card_text d-flex justify-content-center">
                             <p>{{ ($post->judul_post) }}</p>
                         </div>
@@ -53,3 +53,4 @@
         </div>
     </div>
 @endsection
+

@@ -50,7 +50,7 @@
             />
     </head>
 
-    <body>
+    <body class="d-flex flex-column min-vh-100">
     @include('sweetalert::alert')
 
     <!-- Navbar -->
@@ -137,7 +137,7 @@
         @yield('container')
       </div>
 
-      <footer class="bg-light text-center text-lg-start fixed-bottom">
+      <footer class="bg-light text-center text-lg-start mt-auto">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
           © 2022 Copyright:
@@ -181,7 +181,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
 
     <!-- Google Recaptcha -->
-    <script src='https://www.google.com/recaptcha/api.js'></script>s
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
 
     
     @yield('script')

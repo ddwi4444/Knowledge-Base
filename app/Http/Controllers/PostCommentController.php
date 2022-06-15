@@ -19,7 +19,7 @@ class PostCommentController extends Controller
             'username' => $req->email,
             'comment' => $req->komentar,
             'status' => '0',
-            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required|recaptchav3:register,0.5',
         ]);
 
         if ($post) {

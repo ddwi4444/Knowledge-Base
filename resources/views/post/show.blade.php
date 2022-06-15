@@ -2,6 +2,7 @@
 
 @section('container')
 <!-- Halaman untuk menampilkan single post -->
+{!! RecaptchaV3::initJs() !!}
 
 <div class="container-xxl animate__animated animate__fadeIn">
     <br>
@@ -36,7 +37,7 @@
             <div class="slider__item">
                     <a href="{{ route('show', ['id_unit'=>$rpost->id_unit, 'slug'=>$rpost->slug] )}}">
                     <div class="card__header_post text-dark bbb_viewed_name">
-                        <img class="img_post" src="{{ asset('storage/'.$rpost->image) }}" alt="card__image" class="card__image" width="600">
+                        <img class="img_post" src="{{ asset('storage/'.$rpost->image) }}" alt=" " class="card__image" width="600">
                     </div>
                     <p>{{ Str::limit($rpost->judul_post, 30) }}</p></a>
                     <p>{{ $rpost->created_at->diffForHumans() }}</p>
@@ -156,17 +157,21 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-6 mt-2">
-                            {!! NoCaptcha::renderJs() !!}
-                            {!! NoCaptcha::display() !!}
+                            <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                                <div class="col-md-6">
+                                    {!! RecaptchaV3::field('register') !!}
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <button type="submit" class="btn btn-primary btn-sm">Ajukan Pertanyaan</button>
                                 <a href="{{ route('show', ['id_unit'=>$post->id_unit, 'slug'=>$post->slug]) }}" class="btn btn-outline-primary btn-sm">Batal</a>
                             </div>
-                            
-
                         </form>                       
                     
                 </div>
@@ -185,4 +190,6 @@
 
 </div>
 
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 @endsection
