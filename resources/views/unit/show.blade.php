@@ -29,27 +29,29 @@
     </div>
 
 @section('container')    
-    <div class="container" style="margin-bottom: 50px;">
-        <div class="row justify-content-center ms-1">
+    <div class="container mt-5" style="margin-bottom: 50px;">
+        <div class="row g-0 justify-content-center ms-1 p-0 m-0 responsive">
             <!-- Memanggil data post -->
             @foreach($posts as $post)
             <!-- Menyaring untuk menampilkan post berdasarkan id yang sama dengan parameter id unitnya -->
             @if($post->id_unit == $user->id_unit)
-            <div class="col-md-3">
-                <div data-aos="fade-up" class="card_unit mt-5">
-                    <a class="text-dark text-underline-hover" href="{{ route('show', ['id_unit'=>$post->id_unit, 'slug'=>$post->slug] )}}">
-                        <img class="img_unit" src="{{ asset('storage/'.$post->image) }}" alt=" ">
-                        <div class="card_text d-flex justify-content-center">
-                            <p>{{ ($post->judul_post) }}</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ $post->created_at->format('d, M Y'); }}</li>
-                        </ul>
-                    </a>
-                </div>
+            <div class="col-md-2 responsive justify-content-center mt-5 d-flex">
+                <article class="card__unit card responsive">
+                    <div class="card__info-hover">        
+                    </div>
+                    <div class="card__img"></div>
+                    <a href="{{ route('show', ['id_unit'=>$post->id_unit, 'slug'=>$post->slug] )}}" class="card_link">
+                        <div class="card__img--hover"><img style="height: 450px;" class="img_card" src="{{ asset('storage/'.$post->image) }}" alt=""></div>
+                    <div class="card__info">
+                        <div class="fitin" id="fitin">
+                            <h5 class="card__title text-dark" id="fitin">{{ ($post->judul_post) }}</h5>
+                        </div>                        
+                        <p class="card__by text-dark">{{ $post->created_at }}</p></a>
+                    </div>
+                </article>
             </div>
             @endif
-            @endforeach
+            @endforeach            
         </div>
     </div>
 @endsection

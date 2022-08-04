@@ -8,16 +8,15 @@
 <h3 class="animate__animated animate__fadeIn">Pertanyaan</h3>
 <br>
 
-<table class="table animate__animated animate__fadeIn">
+<table class="table__show animate__animated animate__fadeIn" style="text-align: center;">
   <thead>
     <tr>
-      <th scope="col">No</th>
-      <th scope="col">Username</th>
-      <th scope="col">Nama</th>
-      <th scope="col">Pertanyaan</th>
-      <th scope="col">Tanggal</th>
-      <th scope="col">Status Tampil</th>
-      <th scope="col">Actions</th>
+      <th style="background: #38b6ff" scope="col">Nomor</th>
+      <th style="background: #38b6ff" scope="col">Nama</th>
+      <th style="background: #38b6ff" scope="col">Pertanyaan</th>
+      <th style="background: #38b6ff" scope="col">Tanggal</th>
+      <th style="background: #38b6ff" scope="col">Status Tampil</th>
+      <th style="background: #38b6ff" scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -25,12 +24,11 @@
   <!-- Kondisi untuk menampilkan pesan hanya dari mahasiswa, jadi membutuhkan pesan/comment yang tidak memiliki id parent -->
   @if($comment->id_parent == NULL)
     <tr>
-      <td>{{ $loop->iteration }}</td>
-      <td>{{ $comment->username }}</td>
-      <td>{{ $comment->nama }}</td>
-      <td class="col-sm-3">{{ $comment->comment }}</td>
-      <td>{{ $comment->created_at->format('d, M Y'); }}</td>
-      <td>
+      <td data-label="Nomor">{{ $loop->iteration }}</td>
+      <td data-label="Nama">{{ $comment->nama }}</td>
+      <td data-label="Pertanyaan" class="col-sm-3">{{ $comment->comment }}</td>
+      <td data-label="Tanggal">{{ $comment->created_at->format('d, M Y'); }}</td>
+      <td data-label="Status Tampil">
           @if($comment->status == 0)
           <!-- Tanda pertanyaan masi baru -->
             <p class="text-info">Pesan Baru</p>            
@@ -44,7 +42,7 @@
             class="btn btn-sm btn-primary shadow"><i class="bi bi-check-square"></i> Tampil</i></a>  
           @endif
       </td>
-      <td>
+      <td data-label="Actions">
         <form
           action="{{ route('comment.destroy', $comment->id) }}" method="Post">
           <!-- Button untuk masuk ke halaman detail pesan oleh mahasiswa -->
@@ -62,9 +60,6 @@
     @endforeach
   </tbody>
 </table>
-<br>
-<br>
-<br>
 @endsection
 
 @section('script')

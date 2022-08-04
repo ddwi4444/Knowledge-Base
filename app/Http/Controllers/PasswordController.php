@@ -41,5 +41,5 @@ class PasswordController extends Controller
         } else {
             return back()->withErrors(['old_password' => 'Password yang anda masukkan salah']);
         }
-}
+    }
 }

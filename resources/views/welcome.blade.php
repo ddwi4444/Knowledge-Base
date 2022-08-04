@@ -32,7 +32,7 @@
     <div class="section_home animate__animated animate__fadeIn">
 
         <section class="article-list">
-            <div class="container me-5">
+            <div class="container me-2">
                     
                 <div class="intro animate__animated animate__fadeIn">
                     <h2 class="text-center">Knowledge Base</h2>
@@ -45,15 +45,13 @@
                             <a href="{{ route('unit.posts', $user->id_unit) }}"><p class="text-primary fw-light" style="font-size:20px;">{{ $user->nama_unit }}</p></a>
                             <!-- Untuk memanggil post -->
                             @foreach ($posts as $post)
-                                @if ($post->id_unit == $user->id_unit)
-                                    <p style="line-height:0.5em;"><a class="text-dark text-underline-hover" href="{{ route('show', ['id_unit'=>$post->id_unit, 'slug'=>$post->slug] )}}">{{ Str::limit($post->judul_post, 40) }}</a></p>
+                                @if($post->id_unit == $user->id_unit)
+                                    <p><a class="title_welcome text-dark text-underline-hover" href="{{ route('show', ['id_unit'=>$post->id_unit, 'slug'=>$post->slug] )}}">{{ Str::limit($post->judul_post, 40) }}</a></p>
                                 @endif
                             @endforeach                        
                         </div>
                     @endforeach                 
-                </div>
-                
-
+                </div>        
             </div>
         </section>
 

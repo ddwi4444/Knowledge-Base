@@ -4,16 +4,12 @@
 
 <!-- Halaman yang menampilkan detail pesan dari mahasiswa -->
 <div class="container-xxl animate__animated animate__fadeIn">
-    <br>
-    <br>
-    <hr>
-
-    <section style="background-color: #eee;">
-        <div class="container my-5 py-5">            
+    <section style="background-color: #fff;" class="mt-5">
+        <div class="container my-3">            
             <div class="row d-flex justify-content-center">
             <div class="col-md-12 col-lg-10 col-xl-8">
             <h6>Pertanyaan</h6>
-                <div class="card">
+                <div class="">
                 <div class="card-body">
                     <div class="d-flex flex-start align-items-center">
                         <img class="rounded-circle shadow-1-strong me-3"
@@ -40,7 +36,7 @@
                     @foreach($comments as $com)
                     <!-- Untuk menyaring balasan pesan yang sesuai dengan id parent -->
                     @if($com->id_parent == $comment->id)
-                    <div style="padding-left:3.5em; padding-right: 10px; bg-dark" class="mb-5">
+                    <div style="padding-left:3.5em; padding-right: 10px; bg-dark">
                                 <p style="color: #be5504;">Balasan <i class="bi bi-reply-all"></i></p>
                                 <h6 style="color: #be5504;" class="fw-bold mb-1">{{$com->nama}}</h6>
                                 <p class="text-muted small mb-0">
@@ -71,7 +67,7 @@
                 </div>
                 
                 <!-- Form untuk membalasa pesan dari mahasiswa -->
-                <div class="card-footer py-3 border-0 mt-3" style="background-color: #f8f9fa;">
+                <div class="mt-4" style="background-color: #f8f9fa; border-radius: 20px;">
                     <div class="d-flex flex-start w-100 justify-content-center">
                         <form action="{{ route('answer.store', $comment) }}" method="post">
                             @csrf
@@ -106,19 +102,13 @@
                             <div class="float-start mt-2">
                                 <button type="submit" class="btn btn-primary btn-sm">Kirim Balasan</button>
                                 <a href="{{ route('pertanyaan') }}" class="btn btn-outline-primary btn-sm">Kembali</a>
-                            </div>
-                            
+                            </div>                            
                         </form>
                 </div>
             </div>
             </div>
         </div>
     </section>
-
-    <br>
-    <br>
-    <br>
-
 </div>
 
 @endsection

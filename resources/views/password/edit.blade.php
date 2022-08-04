@@ -7,7 +7,7 @@
     <div class="container mt-4 animate__animated animate__fadeIn">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="">
                     <div class="card-header h4">
                         Update Password
                     </div>
@@ -56,7 +56,7 @@
 
                             <!-- Input untuk konfirmasi password terbaru -->
                             <div class="form-group row">
-                                <label for="password_onfirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirm New Password') }}</label>
+                                <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirm New Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">

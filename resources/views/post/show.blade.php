@@ -4,7 +4,7 @@
 <!-- Halaman untuk menampilkan single post -->
 {!! RecaptchaV3::initJs() !!}
 
-<div class="container-xxl animate__animated animate__fadeIn">
+<div class="container-xxl animate__animated animate__fadeIn justify-content-center text-align-center">
     <br>
 
     <ul id="menu">
@@ -16,15 +16,18 @@
     </ul>  
     
     <hr>
+    <center>
+        <div class="show__post">
+            <header class="w3-container w3-center w3-padding-32 text-align-center"> 
+            <h1 class="text-center"><b>{{ $post->judul_post }}</b></h1>
+            <p class="text-center">{{ $post->created_at->diffForHumans() }}</p>
+            </header>
 
-    <header class="w3-container w3-center w3-padding-32 text-align-center"> 
-    <h1 class="text-center"><b>{{ $post->judul_post }}</b></h1>
-    <p class="text-center">{{ $post->created_at->diffForHumans() }}</p>
-    </header>
-
-    <div class="text-justify mb-5">
-        <p class="text-justify">{!! $post->isi_post !!}</p> 
-    </div>
+            <div class="text-justify mb-5">
+                <p class="text-justify">{!! $post->isi_post !!}</p> 
+            </div>
+        </div>
+    </center>
 
     <!-- Pertanyaan terkait -->
     <div class="slider">
@@ -51,16 +54,16 @@
 
     <!-- Comment -->
     <section style="background-color: #eee;">
-        <div class="container my-5 py-5">            
+        <div class="container">            
             <div class="row d-flex justify-content-center">
-            <div class="col-md-12 col-lg-10 col-xl-8">
+            <div class="col-md-12 col-lg-10 col-xl-8 mt-3">
             <h6>Pertanyaan</h6>
 
             <!-- Untuk memanggil data pesan pada post ini -->
             @foreach($comments as $comment)
             <!-- Untuk menyaring psean yang sesuai dengan id post  -->
             @if($comment->id_post == $post->id && $comment->id_parent == NULL && $comment->status == 1)
-                <div class="card">                
+                <div class="card-footer" style="background-color: #f8f9fa;">                
                 <div class="card-body d-flex flex-fill">                    
                     <div class="d-flex flex-start align-items-center">
                         <div>
@@ -115,7 +118,7 @@
                             @csrf
                             @method('post')  
 
-                            <div class="form-group float-start mt-2 pt-2">
+                            <div class="form-group float-start mt-2">
                                 <label for="nama">Nama</label>
                                 <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                     name="nama" id="nama" 
@@ -130,8 +133,8 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group float-end mt-2 pt-2 m-2">
-                                <label for="email">Email Student</label>
+                            <div class="form-email-student form-group mt-2">
+                                <label class="label-emailStudent" for="email">Email Student</label>
                                 <input type="text" class="form-control @error('email') is-invalid @enderror"
                                     pattern=".+@students.uajy.ac.id" oninput="setCustomValidity('')"
                                     oninvalid="this.setCustomValidity('Hanya dapat menggunakan email student !')"
@@ -180,14 +183,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-    <br>
-    <br>
-    <br>
-
 </div>
 
 <script src="https://www.google.com/recaptcha/api.js"></script>

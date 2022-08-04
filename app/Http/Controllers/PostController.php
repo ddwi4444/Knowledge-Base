@@ -31,6 +31,16 @@ class PostController extends Controller
         ]);
     }
 
+    // Untuk menampilkan dashboard admin
+    public function indexAdmin()
+    {
+        return view('dashboard.admin', [
+            'title' => 'Dashboard Admin',
+
+            'users' => User::where('type', '!=', 1)->get()
+        ]);
+    }
+
     // Fitur untuk autocomplete input tags pada form pembuatan post
     public function autocomplete(Request $request)
     {
@@ -109,8 +119,18 @@ class PostController extends Controller
      */
     public function create()
     {
+
+        $mostTags = DB::table('posts')
+        ->select('tags')
+        ->groupBy('tags')
+        ->orderByRaw('COUNT(*) DESC')
+        ->limit(1)
+        ->get()
+        ->first();
+
         return view('post.create', [
-            'title' => 'Buat Post'
+            'title' => 'Buat Post',
+            'mostTags' => $mostTags->tags,
         ]);
     }
 
@@ -164,9 +184,18 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $mostTags = DB::table('posts')
+        ->select('tags')
+        ->groupBy('tags')
+        ->orderByRaw('COUNT(*) DESC')
+        ->limit(1)
+        ->get()
+        ->first();
+
         $post = Post::findOrFail($id);
         return view('post.edit', compact('post'),[
-            'title' => 'Edit Post'
+            'title' => 'Edit Post',
+            'mostTags' => $mostTags->tags,
         ]);
     }
 

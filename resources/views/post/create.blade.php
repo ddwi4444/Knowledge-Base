@@ -1,22 +1,21 @@
 @extends('layouts.main')
 
 @section('container')
-<br>
-<br>
 <!-- Halaman untuk menampilkan pembuatan post -->
-<div class="container mt-5 mb-5 animate__animated animate__fadeIn">
+<div class="container animate__animated animate__fadeIn">
         <div class="row">
             <div class="col-md-12">
 
-                <div class="card border-0 shadow rounded">
+                <div class="border-0 shadow rounded">
                     <div class="card-body">
 
                         <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('post')                    
 
+                            <p><span class="text-danger">*</span> Wajib  diisi</p>
                             <div class="form-group">
-                                <label for="judul_post">Judul</label>
+                                <label for="judul_post">Judul <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('judul_post') is-invalid @enderror"
                                     name="judul_post" id="judul_post" value="{{ old('judul_post') }}" required>
 
@@ -30,7 +29,7 @@
 
                             <div class="form-group mt-2 mb-2">
                                 <div class="image">
-                                <label for="image">Thumbnail</label>
+                                <label for="image">Thumbnail <span class="text-danger">*</span></label>
                                     <input type="file" class="form-control  @error('thumbnail') is-invalid @enderror" name="image" id="image" accept="image/jpg, image/png, image/jpeg" required>
                                 </div>
 
@@ -43,7 +42,7 @@
                             </div>
 
                             <div class="form-group mt-2">
-                                <label for="isi_post">Isi</label>
+                                <label for="isi_post">Isi <span class="text-danger">*</span></label>
                                 <textarea
                                     name="isi_post" id="editor"
                                     class="form-control @error('isi_post') is-invalid @enderror"
@@ -59,7 +58,11 @@
                             </div>
 
                             <div class="form-group mt-2">
-                                <label for="tags">Tags</label>
+                                <tr>
+                                    <th class="tagss" scope="col"><label for="tags">Tags <span class="text-danger">*</span></label></th>
+                                    <th scope="col">Paling banyak digunakan : {{ $mostTags }}</th>
+                                </tr>
+                                
                                 <input type="text" class="typeahead form-control @error('tags') is-invalid @enderror"
                                     name="tags" id="tags" value="{{ old('tags') }}" required>
 
@@ -80,10 +83,6 @@
             </div>
         </div>
     </div>
-
-    <br>
-    <br>
-    <br>
 @endsection
 
 @section('script')
@@ -118,8 +117,7 @@
     },
     minLength: 1
  });
-});
- 
+}); 
 </script>   
 
 @endsection

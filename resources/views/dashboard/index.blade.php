@@ -13,7 +13,7 @@
 </div>
 
 <!-- Input untuk mencari post oleh admin -->
-<form action="/dashboard/cari" method="GET" class="input-group rounded mt-4 w-25 animate__animated animate__fadeIn">
+<form action="/dashboard/cari" method="GET" class="search input-group rounded mt-4 animate__animated animate__fadeIn">
 		<input type="text" class="form-control rounded" name="cari" placeholder="Cari.." value="{{ old('cari') }}">
 		<span class="input-group-text border-0" id="search-addon">
       <i class="bi bi-search"></i>
@@ -21,23 +21,23 @@
 </form>
 
 <!-- Table untuk menampilkan daftar post yang telah dibuat oleh admin -->
-<table class="table animate__animated animate__fadeIn container">
+<table class="table__show animate__animated animate__fadeIn container" style="text-align: center;">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Judul</th>
-      <th scope="col">Tanggal</th>
-      <th scope="col">Actions</th>
+      <th style="background: #38b6ff" scope="col">Nomor</th>
+      <th style="background: #38b6ff" scope="col">Judul</th>
+      <th style="background: #38b6ff" scope="col">Tanggal</th>
+      <th style="background: #38b6ff" scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     <!-- Perulangan Post -->
   @foreach($posts as $post)
     <tr>
-      <td>{{ $loop->iteration }}</td>
-      <td class="col-sm-5">{{ $post->judul_post }}</td>
-      <td>{{ $post->created_at }}</td>
-      <td>
+      <td data-label="Nomor">{{ $loop->iteration }}</td>
+      <td data-label="Judul" class="col-sm-5">{{ $post->judul_post }}</td>
+      <td data-label="Tangal">{{ $post->created_at }}</td>
+      <td data-label="Actions">
               <form
                 action="{{ route('posts.destroy', $post->id) }}" method="POST">
                 <!-- Button untuk melihat detail post -->

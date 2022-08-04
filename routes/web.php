@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
@@ -23,6 +24,10 @@ use App\Models\Comment;
 |
 */
 
+Route::get('/tes', function () {
+    Artisan::call('storage:link');
+});
+
 Route::get('/', [Controller::class, 'index'])->name('/');
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
@@ -30,6 +35,14 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/dashboard', [PostController::class, 'index'])->middleware('auth')->name('dashboard');
+Route::get('/dashboard/admin', [PostController::class, 'indexAdmin'])->middleware('auth')->name('dashboard/admin');
+Route::get('searchUnitAdmin',[UserController::class, 'search'])->name('unit.search.admin');
+Route::get('/changeStatusUserAktif/{user}', [UserController::class, 'changeStatusUserAktif'])->middleware('auth')->name('changeStatusUserAktif');
+Route::get('/changeStatusUserNonaktif/{user}', [UserController::class, 'changeStatusUserNonaktif'])->middleware('auth')->name('changeStatusUserNonaktif');
+
+Route::resource('/users', UserController::class)->middleware('auth');
+Route::get('password/admin/{id}', [UserController::class, 'edit'])->name('password/admin.edit')->middleware('auth');
+Route::patch('passwordUpdate/admin/{id}', [UserController::class, 'update'])->name('password/admin.update')->middleware('auth');
 
 Route::get('/pertanyaan', [PostCommentController::class, 'pertanyaan'])->middleware('auth')->name('pertanyaan');
 Route::post('/pertanyaan.store/{post}', [PostCommentController::class, 'store'])->name('pertanyaan.store');

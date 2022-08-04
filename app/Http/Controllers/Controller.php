@@ -19,7 +19,7 @@ class Controller extends BaseController
         return view('welcome', [
             'title' => 'Home',
             'users' => User::all(),
-            'posts' => Post::paginate(5),
+            'posts' => Post::paginate(20),
             'comments' => Comment::all(),
         ]);
     }

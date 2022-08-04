@@ -2,6 +2,55 @@ body{
   color: #6c757d;
 }
 
+/* Nav Bar */
+.nav {
+  height: 50px;
+  width: 100%;
+  background-color: #4d4d4d;
+  position: relative;
+}
+
+.nav > .nav-header {
+  display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  padding: 10px 10px 10px 10px;
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #efefef;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+/* Create POst */
+.tagss{
+  padding-right: 100px;
+}
+
 /* Log In */
 .form-signin {
   width: 100%;
@@ -85,7 +134,7 @@ body{
 .bg-video{
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 300px;
 
     /* Will not allow the video to overflow the 
     container */
@@ -103,6 +152,13 @@ body{
 /* Home */
 .section_home{
   margin-top: 80px;
+}
+
+/* Show Post */
+.show__post{
+  max-width: 790px;
+  justify-content: center;
+  text-align: center;
 }
 
 /* multiple carousel */
@@ -175,6 +231,10 @@ body{
   text-align: center;
 }
 
+.search{
+  max-width: 300px;
+}
+
 /* Card Related Post */
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
 
@@ -183,32 +243,6 @@ body{
   height: 100px;
   display: block;
   object-fit: cover;
-}
-
-/* Card Unit Show */
-.card_unit {
-  width: 250px;
-  height: 250px;
-  border-style: solid;
-  border-width: medium;
-  border-color: rgb(78, 151, 210);
-}
-
-.img_unit {
-  width: 245.5px;
-  height: 100px;
-  display: block;
-  object-fit: cover;
-}
-
-.card_text {
-  width: 250px;
-  height: 100px;
-  padding-top: 10px;
-  padding-left: 6px;
-  padding-right: 10px;
-  text-align: center;
-  display: inline-block;
 }
 
 /* Navigasi Link Button */
@@ -228,3 +262,523 @@ ul#menu li a {
 ul#menu li a:hover {
   color: red;
 }
+
+/* Card Unit Show */
+.card__img {
+  visibility: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 235px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+
+}
+
+.card__info-hover {
+  position: absolute;
+  padding: 16px;
+  width: 100%;
+  opacity: 0;
+  top: 0;
+}
+
+.card__img--hover {
+  transition: 0.2s all ease-out;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  top: 0;
+
+}
+.card {
+  margin-right: 25px;
+  transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+  background-color: #fff;
+  width: 200px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+}
+.card:hover {
+box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+  transform: scale(1.10, 1.10);
+}
+
+.card__info {
+z-index: 2;
+background-color: #fff;
+ padding: 16px 24px 24px 24px;
+}
+
+.card__title {
+  margin-top: 5px;
+  margin-bottom: 30px;
+  font-family: 'Roboto Slab', serif;
+}
+
+#fitin {
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+}
+
+.card:hover .card__img--hover {
+  height: 100%;
+  opacity: 0.3;
+}
+
+.card:hover .card__info {
+  background-color: transparent;
+  position: relative;
+}
+
+.card:hover .card__info-hover {
+  opacity: 1;
+}
+
+.card__by {
+  font-size: 12px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+}
+
+/* Table */
+.table__show {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table__show caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+.table__show tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+.table__show th,
+.table__show td {
+  padding: .625em;
+  text-align: center;
+}
+
+.table__show th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* From Pertanyaan */
+.form-email-student{
+  float: right;
+  margin-right: 5rem;
+  padding-left: 20px;
+}
+
+.title_welcome{
+  line-height:0.5em;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  /* Navbar */
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+  
+  .tagss{
+    padding-right: 0px;
+  }
+
+  .table__show {
+    border: 0;
+  }
+  
+  .table__show thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  .table__show tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  .table__show td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  .table__show td::before {
+/*     
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .table__show td:last-child {
+    border-bottom: 0;
+  }
+
+  .show__post{
+    max-width: 390px;
+  }
+
+  .bg-video{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+
+    /* Will not allow the video to overflow the 
+    container */
+    overflow: hidden;
+
+    /* Centering the container's content vertically 
+    and horizontally */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    z-index:-100;
+    position: absolute;
+  }
+
+  .search{
+    max-width: 200px;
+  }
+
+  .form-email-student{
+    float: none;
+    padding-left: 0px;
+  }
+
+  .label-emailStudent{
+    margin-top: .5rem;
+  }
+
+  .title_welcome{
+    line-height:0.9em;
+  }
+
+  /* Card Unit Show */
+  .card__img {
+    visibility: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 150px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  .card__info-hover {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+  }
+
+  .card__img--hover {
+    transition: 0.2s all ease-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    top: 0;
+
+  }
+  .card {
+    margin-right: 0px;
+    transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+    background-color: #fff;
+    width: 200px;
+    overflow: hidden;
+    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+  }
+  .card:hover {
+  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+    transform: scale(1.10, 1.10);
+  }
+
+  .card__info {
+  z-index: 2;
+  background-color: #fff;
+  }
+
+  .card__title {
+    font-family: 'Roboto Slab', serif;
+  }
+
+  #fitin {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+  }
+
+  .card:hover .card__img--hover {
+    height: 100%;
+    opacity: 0.3;
+  }
+
+  .card:hover .card__info {
+    background-color: transparent;
+    position: relative;
+  }
+
+  .card:hover .card__info-hover {
+    opacity: 1;
+  }
+
+  .card__by {
+    font-size: 12px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+  }
+}
+
+/* Responsive 810 */
+@media screen and (max-width: 811px) {
+  .table__show {
+    border: 0;
+  }
+  
+  .table__show thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  .table__show tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  .table__show td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  .table__show td::before {
+/*     
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .table__show td:last-child {
+    border-bottom: 0;
+  }
+
+  .show__post{
+    max-width: 390px;
+  }
+
+  .bg-video{
+    position: relative;
+    width: 100%;
+    height: 230px;
+    margin-top: 50px;
+
+    /* Will not allow the video to overflow the 
+    container */
+    overflow: hidden;
+
+    /* Centering the container's content vertically 
+    and horizontally */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    z-index:-100;
+    position: absolute;
+  }
+
+  .search{
+    max-width: 200px;
+  }
+
+  .form-email-student{
+    float: none;
+    padding-left: 0px;
+  }
+
+  .label-emailStudent{
+    margin-top: .5rem;
+  }
+
+  .title_welcome{
+    line-height:1.3em;
+  }
+
+  /* Card Unit Show */
+  .card__img {
+    visibility: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 150px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  .card__info-hover {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+  }
+
+  .card__img--hover {
+    transition: 0.2s all ease-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    top: 0;
+
+  }
+  .card {
+    margin-right: 0px;
+    transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+    background-color: #fff;
+    width: 200px;
+    overflow: hidden;
+    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+  }
+  .card:hover {
+  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+    transform: scale(1.10, 1.10);
+  }
+
+  .card__info {
+  z-index: 2;
+  background-color: #fff;
+  }
+
+  .card__title {
+    font-family: 'Roboto Slab', serif;
+  }
+
+  #fitin {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+  }
+
+  .card:hover .card__img--hover {
+    height: 100%;
+    opacity: 0.3;
+  }
+
+  .card:hover .card__info {
+    background-color: transparent;
+    position: relative;
+  }
+
+  .card:hover .card__info-hover {
+    opacity: 1;
+  }
+
+  .card__by {
+    font-size: 12px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+  }
+}
+
+
+
+
+
+
+
+
+
+

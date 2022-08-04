@@ -54,86 +54,77 @@
     @include('sweetalert::alert')
 
     <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top m-auto" style="color: #F06292!important;">
-        <!-- Container wrapper -->
-        <div class="container">
-          <!-- Navbar brand -->
-          <a class="navbar-brand me-2" href="/">
-            <img class="animate__animated animate__fadeIn"
-              src="../img/Logo UAJY.png"
-              height="35"
-              alt="Logo UAJY"
-              loading="lazy"
-              style="margin-top: -1px;"
-            />
-          </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top m-auto responsive">
 
-          <!-- Collapsible wrapper -->
-          <div class="collapse navbar-collapse animate__animated animate__fadeIn" id="navbarButtonsExample">
+    <div class="container">
+      <!-- Navbar brand -->
+      <a class="navbar-brand me-2" href="/">
+          <img class="animate__animated animate__fadeIn"
+            src="../img/Logo UAJY.png"
+            height="35"
+            alt="Logo UAJY"
+            loading="lazy"
+            style="margin-top: -1px;"
+          />
+        </a>
+
+      <!-- Collapse button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+          </span>
+      </button>
+
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="basicExampleNav">
+
+          <!-- Links -->
+          <ul class="navbar-nav ms-auto me-2 mb-1 mb-lg-0">
+            </ul>
+            
             <!-- Left links -->
-            <div class="collapse navbar-collapse" id="navbarRightAlignExample">
-              <!-- Left links -->
-              <ul class="navbar-nav ms-auto me-2 mb-1 mb-lg-0">
-              </ul>
-              
-              <!-- Left links -->
-              <ul class="navbar-nav mb-1 me-2 mb-lg-0">
-              </ul>              
-            </div>
+          <ul class="navbar-nav mb-1 me-2 mb-lg-0">
+          </ul> 
+          <ul class="navbar-nav mr-auto">
 
-            <!-- Tampilan Navbar Setelah Login -->
-            @auth
-              <li class="dropdown animate__animated animate__fadeIn">
-                <a
-                  class="align-items-center link-light"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-mdb-toggle="dropdown"
-                  aria-expanded="false"
-                >{{ auth()->user()->nama_unit }} <i class="bi bi-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">                  
-                  <li>
-                    <a class="dropdown-item" href="/dashboard"> <i class="bi bi-layout-text-sidebar-reverse"></i> Dashboard</a>
-                  </li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li>
-                    <a class="dropdown-item" href="{{ route('pertanyaan') }}"><i class="bi bi-chat-dots"></i> Pertanyaan</a>
-                  </li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li>
-                    <a class="dropdown-item" href="{{ route('password.edit') }}"><i class="bi bi-key"></i> Ganti Password</a>
-                  </li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li>
-                    <form action="/logout" method="post">
-                      @csrf
-                      <button type="submit" class="dropdown-item">
-                        <i class="bi bi-box-arrow-left"></i> Logout</a>
-                      </button>
-                    </form>               
-                  </li>
-                </ul>
-              </li>
-
-            <!-- Tampilan Navbar Sebelum Login -->
-            @else
-            @endauth
-
-          </div>
-          <!-- Collapsible wrapper -->
-        </div>
-        <!-- Container wrapper -->
-      </nav>
+          @auth
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" role="button"
+              aria-haspopup="true" aria-expanded="false">{{ auth()->user()->nama_unit }}</a>
+              <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+              @if(auth()->user()->type == 0)
+                  <a class="dropdown-item" href="/dashboard"> <i class="bi bi-layout-text-sidebar-reverse"></i> Dashboard</a>                   
+                  <a class="dropdown-item" href="{{ route('pertanyaan') }}"><i class="bi bi-chat-dots"></i> Pertanyaan</a>                
+                  <a class="dropdown-item" href="{{ route('password.edit') }}"><i class="bi bi-key"></i> Ganti Password</a>                      
+              @else                  
+                  <a class="dropdown-item" href="/dashboard/admin"> <i class="bi bi-layout-text-sidebar-reverse"></i> Dashboard</a>                
+                  <a class="dropdown-item" href="{{ route('password.edit') }}"><i class="bi bi-key"></i> Ganti Password</a>                        
+              @endif     
+                  <form action="/logout" method="post">
+                    @csrf
+                    <button type="submit" class="dropdown-item">
+                      <i class="bi bi-box-arrow-left"></i> Logout</a>
+                    </button>
+                  </form>               
+              </div>
+          </li>
+          @endauth
+          </ul>
+      </div>
+    </div>
+    </nav>
 
 
 
-      <div class="container mt-5">
+      <div class="container mt-4">
         @yield('jumbotron')
       </div>
 
-      <div class="container mt-4">
+      <div class="container">
         @yield('container')
       </div>
 
@@ -184,6 +175,12 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
         async defer>
+    </script>
+
+    <script>
+      $('.dropdown').click(function(){
+      $('.dropdown-menu').toggleClass('show');
+     });
     </script>
 
     

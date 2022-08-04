@@ -42,26 +42,36 @@ class PostCommentController extends Controller
     public function storeAnswer(Request $req, Comment $comment)
     {
         
-        Comment::create([
-            'id_post' => $comment->id_post,
-            'id_unit' => auth()->user()->id_unit,
-            'nama' => auth()->user()->nama_unit,
-            'username' => auth()->user()->username,
-            'comment' => $req->balasan,
-            'id_parent' => $comment->id,
-            'status' => '1',            
-        ]);
-
-        if($req->status == 1)
-        {
-            $this->changeStatus($comment->id);
+        if($req->balasan == ''){
+            if($req->status == 1)
+            {
+                $this->changeStatus($comment->id);
+            }
+            elseif($req->status == 2)
+            {
+                $this->changeStatusNonaktif($comment->id);
+            }
         }
-        elseif($req->status == 2)
-        {
-            $this->changeStatusNonaktif($comment->id);
-        }
-
-        
+        else{
+            Comment::create([
+                'id_post' => $comment->id_post,
+                'id_unit' => auth()->user()->id_unit,
+                'nama' => auth()->user()->nama_unit,
+                'username' => auth()->user()->username,
+                'comment' => $req->balasan,
+                'id_parent' => $comment->id,
+                'status' => '1',            
+            ]);
+    
+            if($req->status == 1)
+            {
+                $this->changeStatus($comment->id);
+            }
+            elseif($req->status == 2)
+            {
+                $this->changeStatusNonaktif($comment->id);
+            }    
+        }             
 
         if ($comment) {
             return redirect()

@@ -2,8 +2,6 @@
 
 @section('container')
 <br>
-<br>
-<br>
 <!-- Halaman login admin -->
 <div class="row justify-content-center">
     <div class="col-md-4">
@@ -18,7 +16,7 @@
         @endif
 
         <!-- Form Login -->
-        <h1 class="h4 mb-auto mt-5 fw-normal text-center animate__animated animate__fadeInDown">PENELITIAN - LPPM</h1>
+        <h1 class="h4 mb-auto mt-5 fw-normal text-center animate__animated animate__fadeInDown">Knowledge Base</h1>
         <br>        
         <main class="form-signin border-3 mb-8 animate__animated animate__fadeInDown">
             <form action="/login" method="post">
@@ -28,9 +26,12 @@
 
                     <!-- Input email -->
                     <div class="form-floating">
-                    <input type="username" name="username" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="name@example.com" autofocus required value="{{old ('username')}}">
-                    <label for="username">Email address</label>
-                    @error('email')
+                    <input type="username" name="username" class="form-control @error('username') is-invalid @enderror" id="username" 
+                    pattern=".+@uajy.ac.id" oninput="setCustomValidity('')"
+                    oninvalid="this.setCustomValidity('Username yang anda masukkan tidak sesuai !')"
+                    placeholder="name@example.com" autofocus required value="{{old ('username')}}">
+                    <label for="username">Username</label>
+                    @error('username')
                         <div class="invalid-feedback">
                             {{$message}}
                         </div>
@@ -39,7 +40,7 @@
 
                     <!-- Input password -->
                     <div class="form-floating">
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" value="{{old ('password')}}" required>
                     <label for="password">Password</label>
                     </div>
 
