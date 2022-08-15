@@ -101,7 +101,9 @@
                   <a class="dropdown-item" href="{{ route('pertanyaan') }}"><i class="bi bi-chat-dots"></i> Pertanyaan</a>                
                   <a class="dropdown-item" href="{{ route('password.edit') }}"><i class="bi bi-key"></i> Ganti Password</a>                      
               @else                  
-                  <a class="dropdown-item" href="/dashboard/admin"> <i class="bi bi-layout-text-sidebar-reverse"></i> Dashboard</a>                
+                  <a class="dropdown-item" href="/dashboard/admin"> <i class="bi bi-layout-text-sidebar-reverse"></i> Dashboard</a>  
+                  <a class="dropdown-item" href="/dashboardPostAdmin"> <i class="bi bi-file-earmark-ppt"></i></i> Post</a>  
+                  <a class="dropdown-item" href="{{ route('pertanyaan') }}"> <i class="bi bi-chat-dots"></i> Pertanyaan</a>            
                   <a class="dropdown-item" href="{{ route('password.edit') }}"><i class="bi bi-key"></i> Ganti Password</a>                        
               @endif     
                   <form action="/logout" method="post">

@@ -68,7 +68,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-md btn-primary mt-2">Unggah</button>
-                            <a href="{{ route('posts.index') }}" class="btn btn-md btn-secondary mt-2">Batal</a>
+                            <a href="{{ route('dashboard') }}" class="btn btn-md btn-secondary mt-2">Batal</a>
 
                         </form>
                     </div>

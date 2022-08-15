@@ -74,13 +74,13 @@ class UserController extends Controller
 
         if ($user) {
             return redirect()
-                ->back()
+                ->route('dashboard/admin')
                 ->with([
                     toast('Password berhasil diubah','success')
                 ]);
         } else {
             return redirect()
-                ->back()
+                ->roue('dashboard/admin')
                 ->withInput()
                 ->with([
                     toast('Password gagal diubah','error')
@@ -130,6 +130,94 @@ class UserController extends Controller
                 ->withInput()
                 ->with([
                     toast('User gagal diaktifkan','error')
+                ]);
+        }
+    }
+
+    // View Create User
+    public function createUser()
+    {
+        return view('user.create', [
+            'title' => 'Buat User',
+        ]);
+    }
+
+    // Untuk membuat user
+    public function storeUser(Request $req, User $user)
+    {
+        $this->validate($req, [
+            'nama_unit' => 'required',
+            'isi_post' => 'required',
+            'password_confirmation' => ['required', 'string', 'min:5', 'confirmed'],
+            'password' => ['required', 'string', 'min:5', 'confirmed'],
+            'id_unit' => 'required',
+        ]);
+
+        $user = User::create([
+            'id_unit' => $req->id_unit,
+            'nama_unit' => $req->nama_unit,
+            'username' => $req->username,
+            'password' => Hash::make($req->password),
+            'type' => '0',
+            'status' => '0'
+        ]);
+
+        if ($user) {
+            return redirect()
+                ->route('dashboard/admin')
+                ->with([
+                    toast('User berhasil dibuat','success')
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    toast('User gagal dibuat','error')
+                ]);
+        }
+    } 
+    
+    // Menampilkan halaman untuk edit username atau nama unit
+    public function indexEditUser($id, User $user)
+    {
+        $id = $id;
+        $user = User::findOrFail($id);
+
+        return view('user.editUser', [
+            'title' => 'Edit User',
+            'id' => $id,
+            'user' =>$user
+        ]);
+    }
+
+    // Proses untuk edit username dan password user
+    public function editUserStore(Request $request, $id)
+    {
+        $this->validate($request, [
+            'username' => 'required',
+            'nama_unit' => 'required'
+        ]);
+
+        $user = User::findOrFail($id); 
+        
+        $user->update([
+            'username' => $request->username,
+            'nama_unit' => $request->nama_unit
+        ]);
+
+        if ($user) {
+            return redirect()
+                ->route('dashboard/admin')
+                ->with([
+                    toast('Password berhasil diubah','success')
+                ]);
+        } else {
+            return redirect()
+                ->roue('dashboard/admin')
+                ->withInput()
+                ->with([
+                    toast('Password gagal diubah','error')
                 ]);
         }
     }

@@ -4,6 +4,11 @@
 <!-- Merupakan halaman dashboard admin -->
 <h3 class="animate__animated animate__fadeIn mt-5">Daftar User</h3>
 
+<!-- Button untuk menambah Post -->
+<div class="col-md-2 animate__animated animate__fadeIn">
+  <p><a class="btn text-capitalize" href="{{ route('createUser') }}">Tambah User</a></p>
+</div>
+
 <!-- Input untuk mencari post oleh admin -->
 <form action="{{ route('unit.search.admin') }}" method="GET" class="search input-group rounded mt-4 animate__animated animate__fadeIn">
 		<input type="text" class="form-control rounded" name="cari" placeholder="Cari.." value="{{ old('cari') }}">
@@ -20,7 +25,7 @@
       <th style="background: #38b6ff" scope="col">ID Unit</th>
       <th style="background: #38b6ff" scope="col">Nama Unit</th>
       <th style="background: #38b6ff" scope="col">Username</th>
-      <th style="background: #38b6ff" scope="col">Actions</th>
+      <th style="background: #38b6ff" scope="col-sm-4">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -42,8 +47,10 @@
                 <a href="{{ route('changeStatusUserAktif', $user->id) }}"
                 class="btn btn-sm btn-primary shadow"><i class="bi bi-check-square"></i> Aktif</i></a>  
               @endif
+                <a href="{{ route('editUser', $user->id) }}"
+                  class="btn btn-sm btn-secondary shadow">Edit User</a>
                 <a href="{{ route('password/admin.edit', $user->id) }}"
-                    class="btn btn-sm btn-info shadow">Edit Password</a>
+                  class="btn btn-sm btn-info shadow">Edit Password</a>                
                 @csrf
             </form>
       </td>

@@ -27,7 +27,7 @@
       <td data-label="Nomor">{{ $loop->iteration }}</td>
       <td data-label="Nama">{{ $comment->nama }}</td>
       <td data-label="Pertanyaan" class="col-sm-3">{{ $comment->comment }}</td>
-      <td data-label="Tanggal">{{ $comment->created_at->format('d, M Y'); }}</td>
+      <td data-label="Tanggal">{{ $comment->created_at }}</td>
       <td data-label="Status Tampil">
           @if($comment->status == 0)
           <!-- Tanda pertanyaan masi baru -->

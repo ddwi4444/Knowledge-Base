@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Post;
 use App\Models\Comment;
@@ -92,10 +93,20 @@ class PostCommentController extends Controller
     // Untuk menampilkan halaman dashboard pesan/pertanyaan dari mahasiswa
     public function pertanyaan()
     {
+        if(auth()->user()->type == 0)
+        {
+            $comments = DB::table('comments')
+            ->where('id_unit', auth()->user()->id_unit)->get();
+        }
+        else{
+            $comments = DB::table('comments')
+            ->get();
+        }
+        
         return view('pertanyaan.index', [
             'title' => 'Pertanyaan',
 
-            'comments' => Comment::where('id_unit', auth()->user()->id_unit)->get()
+            'comments' => $comments
         ]);
     }
 

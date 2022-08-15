@@ -24,10 +24,21 @@ class PostController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->type == 0)
+        {
+            $posts = DB::table('posts')
+            ->where('id_unit', auth()->user()->id_unit)->get();
+        }
+        else{
+            $posts = DB::table('posts')
+            ->get();
+        }
+
         return view('dashboard.index', [
             'title' => 'Dashboard',
 
-            'posts' => Post::where('id_unit', auth()->user()->id_unit)->get()
+            'posts' => $posts,
+            'postsAdmin' => Post::all()
         ]);
     }
 
@@ -41,6 +52,16 @@ class PostController extends Controller
         ]);
     }
 
+    // Menampilkan semua post untuk admin
+    public function indexPostAdmin()
+    {
+        return view('dashboard.index', [
+            'title' => 'Post',
+
+            'posts' => Post::all()
+        ]);
+    }
+
     // Fitur untuk autocomplete input tags pada form pembuatan post
     public function autocomplete(Request $request)
     {
@@ -51,16 +72,25 @@ class PostController extends Controller
         return response()->json($result);
     } 
 
-    // Untuk mencari berdasarkan judul
+    // Untuk mencari berdasarkan judul pada dahsboard
     public function cari(Request $request)
     {
         $cari = $request->cari;
  
-    		// mengambil data dari table pegawai sesuai pencarian data
-		$posts = DB::table('posts')
-		->where('judul_post','like',"%".$cari."%")
-        ->where('id_unit', auth()->user()->id_unit)
-        ->paginate();
+    	// mengambil data dari table pegawai sesuai pencarian data
+		
+
+        if(auth()->user()->type == 0){
+            $posts = DB::table('posts')
+            ->where('judul_post','like',"%".$cari."%")
+            ->where('id_unit', auth()->user()->id_unit)
+            ->paginate();
+        }
+        else{
+            $posts = DB::table('posts')
+            ->where('judul_post','like',"%".$cari."%")
+            ->paginate();
+        }
 		
  
     		// mengirim data post ke view index
@@ -92,6 +122,7 @@ class PostController extends Controller
             ]);
     }
 
+    // Untuk mencari pada serach kumpulan post unit
     public function searchUnit(Request $request, User $user)
     {
         $search = $request->search;
@@ -142,23 +173,47 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'judul_post' => 'required',
-            'isi_post' => 'required',
-            'image' => 'required|max:1024|mimes:jpg,png,jpeg|image',
-            'tags' => 'required',
-        ]);
-
-        $uploadImage = $request->image->store('image', ['disk' => 'public']);
-
-        $post = Post::create([
-            'id_unit' => auth()->user()->id_unit,
-            'judul_post' => $request->judul_post,
-            'image' => $uploadImage,
-            'isi_post' => $request->isi_post,
-            'tags' => $request->tags,
-            'slug' => Str::slug($request->judul_post)
-        ]);
+        if(auth()->user()->type == 0)
+        {
+            $this->validate($request, [
+                'judul_post' => 'required',
+                'isi_post' => 'required',
+                'image' => 'required|max:1024|mimes:jpg,png,jpeg|image',
+                'tags' => 'required',
+            ]);
+    
+            $uploadImage = $request->image->store('image', ['disk' => 'public']);
+    
+            $post = Post::create([
+                'id_unit' => auth()->user()->id_unit,
+                'judul_post' => $request->judul_post,
+                'image' => $uploadImage,
+                'isi_post' => $request->isi_post,
+                'tags' => $request->tags,
+                'slug' => Str::slug($request->judul_post)
+            ]);
+        }
+        else{
+            $this->validate($request, [
+                'judul_post' => 'required',
+                'isi_post' => 'required',
+                'image' => 'required|max:1024|mimes:jpg,png,jpeg|image',
+                'tags' => 'required',
+                'id_unit' => 'required',
+            ]);
+    
+            $uploadImage = $request->image->store('image', ['disk' => 'public']);
+    
+            $post = Post::create([
+                'id_unit' => $request->id_unit,
+                'judul_post' => $request->judul_post,
+                'image' => $uploadImage,
+                'isi_post' => $request->isi_post,
+                'tags' => $request->tags,
+                'slug' => Str::slug($request->judul_post)
+            ]);
+        }
+        
 
         if ($post) {
             return redirect()
@@ -221,7 +276,6 @@ class PostController extends Controller
             $uploadImage = $request->image->store('image', ['disk' => 'public']);
 
             $post->update([
-                'id_unit' => auth()->user()->id_unit,
                 'judul_post' => $request->judul_post,
                 'image' => $uploadImage,
                 'isi_post' => $request->isi_post,
@@ -231,7 +285,6 @@ class PostController extends Controller
         }
 
         $post->update([
-            'id_unit' => auth()->user()->id_unit,
             'judul_post' => $request->judul_post,
             'isi_post' => $request->isi_post,
             'tags' => $request->tags,
@@ -242,7 +295,7 @@ class PostController extends Controller
 
         if ($post) {
             return redirect()
-                ->route('dashboard')
+                ->back()
                 ->with([
                     toast('Post berhasil diupdate','success')
                 ]);
@@ -269,7 +322,7 @@ class PostController extends Controller
     
         if ($post) {
             return redirect()
-                ->route('dashboard')
+                ->back()
                 ->with([
                     toast('Post berhasil dihapus','success')
                 ]);

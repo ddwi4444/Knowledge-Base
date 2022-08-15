@@ -29,7 +29,7 @@
                     <input type="username" name="username" class="form-control @error('username') is-invalid @enderror" id="username" 
                     pattern=".+@uajy.ac.id" oninput="setCustomValidity('')"
                     oninvalid="this.setCustomValidity('Username yang anda masukkan tidak sesuai !')"
-                    placeholder="name@example.com" autofocus required value="{{old ('username')}}">
+                    placeholder="name@uajy.ac.id" autofocus required value="{{old ('username')}}">
                     <label for="username">Username</label>
                     @error('username')
                         <div class="invalid-feedback">

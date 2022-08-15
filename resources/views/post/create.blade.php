@@ -74,6 +74,33 @@
                                 @enderror
                             </div>
 
+                            @if(auth()->user()->type == 1)    
+                            <div class="form-group mt-2">
+                                    <select name="id_unit" required>
+                                        <option value="" disabled selected >Pilih Unit atau Fakultas <span class="text-danger">*</span></option>
+                                        <option value="fti">Fakultas Teknologi Industri</option>
+                                        <option value="fbe">Fakultas Ekonomi dan Bisnis</option>
+                                        <option value="ft">Fakultas Teknik</option>
+                                        <option value="fh">Fakultas Hukum</option>
+                                        <option value="fisip">Fakultas Ilmu Sosial dan Ilmu Politik</option>
+                                        <option value="ftb">Fakultas Teknobiologi</option>
+                                        <option value="pp">Program Pascasarjana</option>
+                                        <option value="kaa">Kantor Akademik dan Admisi</option>
+                                        <option value="kkp">Kantor Kerjasama dan Promosi</option>
+                                        <option value="khsp">Kantor Humas, Sekretariat, dan Protokol</option>
+                                        <option value="ksi">Kantor Sistem Informasi</option>
+                                        <option value="ksdm">Kantor Sumber Daya Manusia</option>
+                                        <option value="kkacm">Kantor Kemahasiswaan, Alumni, dan Campus Ministry</option>
+                                        <option value="kpbb">Kantor Pelatihan Bahasa dan Budaya</option>
+                                        <option value="kpsp">Kantor Pengelolaan Sarana dan Prasarana</option>
+                                        <option value="kk">Kantor Keuangan</option>
+                                        <option value="dpm">Direktorak Penjaminan Mutu</option>
+                                        <option value="lppm">Lembaga Penelitian dan Pengabdian pada Masyarakat</option>
+                                        <option value="perpus">Perpustakaan</option>
+                                    </select>
+                            </div>                 
+                            @endif  
+
                             <button type="submit" class="btn btn-md btn-primary mt-2">Unggah</button>
                             <a href="{{ route('posts.index') }}" class="btn btn-md btn-secondary mt-2">Batal</a>
 

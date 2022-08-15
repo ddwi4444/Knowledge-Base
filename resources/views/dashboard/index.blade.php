@@ -9,7 +9,7 @@
 
 <!-- Button untuk menambah post oleh admin -->
 <div class="col-md-2 animate__animated animate__fadeIn">
-  <p><a class="btn text-capitalize" href="{{ route('posts.create') }}">Tambah Post </a></p>
+  <p><a class="btn text-capitalize" href="{{ route('posts.create') }}">Tambah Post</a></p>
 </div>
 
 <!-- Input untuk mencari post oleh admin -->
