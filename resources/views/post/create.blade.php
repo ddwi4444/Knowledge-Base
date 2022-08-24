@@ -60,10 +60,14 @@
                             <div class="form-group mt-2">
                                 <tr>
                                     <th class="tagss" scope="col"><label for="tags">Tags <span class="text-danger">*</span></label></th>
-                                    <th scope="col">Paling banyak digunakan : {{ $mostTags }}</th>
+                                    <th scope="col"> 
+                                        <button class="btn btn-sm" type="button" data-area="{{ $mostTags }}">
+                                        {{ $mostTags }}
+                                        </button>
+                                    </th>
                                 </tr>
                                 
-                                <input type="text" class="typeahead form-control @error('tags') is-invalid @enderror"
+                                <input type="text" class="typeahead form-control @error('tags') is-invalid @enderror mt-2"
                                     name="tags" id="tags" value="{{ old('tags') }}" required>
 
                                 <!-- error message untuk anggota -->
@@ -147,4 +151,15 @@
 }); 
 </script>   
 
+<script>
+const buttons = document.querySelectorAll("button");
+const areaField = document.getElementById("tags");
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    areaField.value = button.dataset.area;
+    squareField.value = button.dataset.square;
+  });
+});
+</script>
 @endsection
